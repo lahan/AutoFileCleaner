@@ -87,9 +87,7 @@ public class MainActivity extends Activity {
 				
 				Intent intent = new Intent(MainActivity.this, SelfRestartService.class); 
 				intent.putExtra("type", "start");
-				startService(intent);
-				
-				Toast.makeText(MainActivity.this, R.string.hello, Toast.LENGTH_SHORT).show();
+				startService(intent);				
 			}
 		});
 	}

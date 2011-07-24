@@ -23,7 +23,7 @@ public class DirDB {
 	private static final String DATABASE_TABLE = "dirs";
 	
 	private static class DatabaseHelper extends SQLiteOpenHelper{
-		private static final String DATABASE_NAME = "Directries";
+		private static final String DATABASE_NAME = "AutoFileCleanerDirectries";
 		private static final int DATABASE_VERSION = 2;
 		private static final String DATABASE_CREATE = "create table " 
 					+ DATABASE_TABLE + " ("
@@ -56,6 +56,10 @@ public class DirDB {
 	public DirDB(Context context) {	
 		DatabaseHelper helper = new DatabaseHelper(context);
 		dirDB = helper.getWritableDatabase();
+	}
+	
+	public void close(){
+		dirDB.close();
 	}
 	
 	public int delete(long id, String selection, String[] selectionArgs){
