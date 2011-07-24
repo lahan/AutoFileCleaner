@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">AutoFileCleaner</string>
+    <string name="startButtonString">サービス登録 </string>
+    <string name="serviceString">start service</string>
+    <string name="stopServiceString">サービス終了 </string>
+</resources>
