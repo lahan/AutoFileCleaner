@@ -37,7 +37,7 @@ public class SelfRestartService extends Service {
 	}
 
 	private void startService() {
-		Toast.makeText(SelfRestartService.this, R.string.serviceString, Toast.LENGTH_SHORT).show();
+		Toast.makeText(SelfRestartService.this, R.string.startServiceString, Toast.LENGTH_SHORT).show();
 		
 		Runnable runnable = new Runnable() {
 			@Override
@@ -55,9 +55,11 @@ public class SelfRestartService extends Service {
 	}
 	
 	public void cancelService(){
+		Toast.makeText(SelfRestartService.this, R.string.stopServiceString, Toast.LENGTH_SHORT).show();
+		
 		PendingIntent alarmSender = PendingIntent.getService(SelfRestartService.this, 0,
 				new Intent(SelfRestartService.this, SelfRestartService.class), 0);
 		AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
-		manager.cancel(alarmSender);
+		manager.cancel(alarmSender);				
 	}
 }

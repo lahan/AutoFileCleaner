@@ -3,12 +3,13 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
+    android:clickable="false">
 <TextView  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:text="@string/hello"
     />
-<Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_gravity="top" android:text="@string/startButtonString" android:id="@+id/startButtonID"></Button>
-<Button android:text="@string/stopServiceString" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/stopServiceButton"></Button>
+<Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_gravity="top" android:id="@+id/startServiceButtonID" android:text="@string/startServiceButtonString"></Button>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/stopServiceButtonID" android:text="@string/stopServiceButtonString"></Button>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/checkDBButtonString" android:id="@+id/checkDBButtonID"></Button>
 </LinearLayout>

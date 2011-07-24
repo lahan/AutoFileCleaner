@@ -31,7 +31,7 @@ public class DirDB {
 					+ DataColumns._COUNT + " integer, "
 					+ DataColumns.DISPLAY_NAME + " text, "
 					+ DataColumns.DIR + " text not null, "
-					+ DataColumns.FILE_NUM + " integer, "
+					+ DataColumns.FILE_NUM + " integer"
 					+ ");";
 		
 		public DatabaseHelper(Context context) {
@@ -40,6 +40,7 @@ public class DirDB {
 		
 		@Override
 		public void onCreate(SQLiteDatabase db) {		
+			System.out.println(DATABASE_CREATE);
 			db.execSQL(DATABASE_CREATE);
 		}
 
@@ -74,12 +75,24 @@ public class DirDB {
 		throw new SQLException("Failed to insert row");
 	}
 	
+	public long insertWithCheck(ContentValues values){
+		if(!hasDirectory(values.getAsString(DataColumns.DIR)))
+			return insert(values);
+		return -1;
+	}
+	
+	public boolean hasDirectory(String dir){	
+		Cursor c = dirDB.query(DATABASE_TABLE, null, DataColumns.DIR + " = '" + dir + "'", null, null, null, DataColumns._ID);
+		System.out.println(c.getCount());
+		return (c.getCount() > 0);
+	}
+	
 	public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder){
 		SQLiteQueryBuilder sqlBuilder = new SQLiteQueryBuilder();
 		sqlBuilder.setTables(DATABASE_TABLE);
 		
 		if(sortOrder == null || sortOrder.equals("")){
-			sortOrder = DataColumns.DIR;
+			sortOrder = DataColumns._ID;
 		}
 		
 		Cursor c = sqlBuilder.query(dirDB, projection, selection, selectionArgs, null, null, sortOrder);

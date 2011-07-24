@@ -2,7 +2,9 @@
 <resources>
     <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">AutoFileCleaner</string>
-    <string name="startButtonString">サービス登録 </string>
-    <string name="serviceString">start service</string>
-    <string name="stopServiceString">サービス終了 </string>
+    <string name="startServiceButtonString">サービス登録 </string>
+    <string name="startServiceString">starting service</string>
+    <string name="stopServiceButtonString">サービス終了 </string>
+    <string name="checkDBButtonString">データベース確認 </string>
+    <string name="stopServiceString">stopping service</string>
 </resources>
