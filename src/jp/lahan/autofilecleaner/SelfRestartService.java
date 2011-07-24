@@ -77,7 +77,7 @@ public class SelfRestartService extends Service {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								Toast.makeText(SelfRestartService.this, "error : ", Toast.LENGTH_LONG).show();
+								Toast.makeText(SelfRestartService.this, "error : " + e.getMessage(), Toast.LENGTH_LONG).show();
 							}
 						});						
 					}
