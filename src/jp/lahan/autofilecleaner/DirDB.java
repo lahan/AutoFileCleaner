@@ -88,6 +88,7 @@ public class DirDB {
 	public boolean hasDirectory(String dir){	
 		Cursor c = dirDB.query(DATABASE_TABLE, null, DataColumns.DIR + " = '" + dir + "'", null, null, null, DataColumns._ID);
 		System.out.println(c.getCount());
+		c.close();
 		return (c.getCount() > 0);
 	}
 	

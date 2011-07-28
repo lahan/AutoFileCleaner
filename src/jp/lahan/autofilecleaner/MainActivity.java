@@ -34,13 +34,15 @@ public class MainActivity extends Activity {
     	
     	ContentValues values = new ContentValues();
     	values.put(DataColumns.DIR, "/sdcard/Tumblife/html/");
-    	values.put(DataColumns.FILE_NUM, "600");
+    	values.put(DataColumns.FILE_NUM, "300");
     	dirDB.insertWithCheck(values);
     	
     	values = new ContentValues();
     	values.put(DataColumns.DIR, "/sdcard/Tumblife/img/");
-    	values.put(DataColumns.FILE_NUM, "400");
+    	values.put(DataColumns.FILE_NUM, "300");
     	dirDB.insertWithCheck(values);
+    	
+    	dirDB.close();
     } 
     
 	private void setCheckDBButton() {
@@ -68,12 +70,17 @@ public class MainActivity extends Activity {
 		((Button)this.findViewById(R.id.stopServiceButtonID)).setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				((Button)MainActivity.this.findViewById(R.id.stopServiceButtonID)).setClickable(false);
-				((Button)MainActivity.this.findViewById(R.id.startServiceButtonID)).setClickable(true);				
+//				((Button)MainActivity.this.findViewById(R.id.stopServiceButtonID)).setClickable(false);
+//				((Button)MainActivity.this.findViewById(R.id.startServiceButtonID)).setClickable(true);				
 				
-				Intent intent = new Intent(MainActivity.this, SelfRestartService.class);
-				intent.putExtra("type", "cancel");
-				startService(intent);
+				new Thread(new Runnable() {					
+					@Override
+					public void run() {
+						Intent intent = new Intent(MainActivity.this, SelfRestartService.class);
+						intent.putExtra("type", "cancel");
+						startService(intent);						
+					}
+				}).start();
 			}
 		});
 	}
@@ -82,12 +89,17 @@ public class MainActivity extends Activity {
 		((Button)this.findViewById(R.id.startServiceButtonID)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {	
-				((Button)MainActivity.this.findViewById(R.id.stopServiceButtonID)).setClickable(true);
-				((Button)MainActivity.this.findViewById(R.id.startServiceButtonID)).setClickable(false);
+//				((Button)MainActivity.this.findViewById(R.id.stopServiceButtonID)).setClickable(true);
+//				((Button)MainActivity.this.findViewById(R.id.startServiceButtonID)).setClickable(false);
 				
-				Intent intent = new Intent(MainActivity.this, SelfRestartService.class); 
-				intent.putExtra("type", "start");
-				startService(intent);				
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						Intent intent = new Intent(MainActivity.this, SelfRestartService.class); 
+						intent.putExtra("type", "start");
+						startService(intent);										
+					}
+				}).start();
 			}
 		});
 	}
